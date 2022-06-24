@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RTCwebcam</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">RTCwebcam</a>
+        <span class="navbar-text">
+          Version 0.1
+        </span>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="container mt-3">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-12 col-md-4 mb-3">
+          <div class="input-group">
+            <span class="input-group-text">Source</span>
+            <select id="select-media-source" class="form-select" aria-label="Selection for Media Source">
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+          <div class="input-group">
+            <span class="input-group-text">Target</span>
+            <select id="select-target-device" class="form-select col-6 col-md-4"
+              aria-label="Selection for Target Device">
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+          <button id="btn-stream-start" class="btn btn-primary mb-3">Streaming</button>
+          <button id="btn-stream-stop" class="btn btn-danger mb-3" disabled>Stop</button>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-11 col-md-8 text-center">
+        <video id="video-stream" class="w-100 h-auto" autoplay playsinline="true"></video>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="/client.js"></script>
+</body>
+
+</html>

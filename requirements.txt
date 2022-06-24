@@ -1,0 +1,7 @@
+numpy
+av
+netifaces
+asyncio
+aiohttp
+aiortc
+v4l2py
