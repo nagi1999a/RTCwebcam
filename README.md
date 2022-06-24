@@ -20,8 +20,8 @@ RTCwebcam is a python application that can make use of a camera on other device(
     ./run.sh
     ```
 
-2. Then open the browser on a Android, IOS or other devices with cameras, and go to `https://<server-ip>:8080`.
-    - One can reference the script output to know the possible server IP address.
+2. Then open the browser on an Android, IOS devices,or other devices with cameras, and go to `https://<server-ip>:8080`.
+    - You can reference the script output to know the possible server IP address.
     - Since a webpage can only request for camera permissions under secure connection mode, you need to use a `https://` link to access the webpage.
     - However, because the ssl certificate is self-signed, you will see a warning message when you open the webpage.
     - You can ignore the warning message and continue to use the webpage.
@@ -56,14 +56,19 @@ RTCwebcam is a python application that can make use of a camera on other device(
 - To add and activate a plugin, you need to add to add the plugin into `global_plugins` list in `server.py`, `PortraitPaddingPlugin` is enabled by default.
 
 ### Works with OBS virtual camera
-- OBS will load `v4l2loopback` and create a virtual camera device at /dev/video0 (if not found) when it virtual webcam starts.
+- OBS will load `v4l2loopback` and create a virtual camera device at `/dev/video0` (if not found) when its virtual webcam starts.
 - `v4l2loopback-ctl` should have ability to add more virtual camera devices. However, I cannot let it work in my computer for now.
 - Therefore, I chose to create more than one device while loading `v4l2loopback` module, and only use devices with `id>=1` to avoid corrupting, so one should start the application before starting OBS virtual camera, and make sure to let the script reload `v4l2loopback` moudle.
 - After RTCwebcam starts, one can add it as a source of an OBS Scene by selecting `Video Capture Device (V4L2)` in the `Sources` menu.
 
+### Debugging
+- For now, IOS devices will stream videos in `yuvj420p` format, and recent version `ffmpeg` will produce warnings while decoding such format. As a result, the color will be somewhat different at the server-side, but still usable.
+- To avoid show tones of warnings, I chose to let python log to `stdout`, and redirect `stderr` to `/dev/null` by default.
+- If there is any problem with the application, please use `./run.sh --debug` to show the error logs and open an issue.
+
 ## Limitations
 - The application is only works on Linux for now.
-- The resultion and framerate is force to be `640x360` and `30fps` for now. Though you can change the resolution and framerate in the first few lines in `static/client.js`, but it might not work as expected.
+- The resolution and framerate is force to be `640x360` and `30fps` for now. Though you can change the resolution and framerate in the first few lines in `static/client.js`, but it might not work as expected.
 
 ## Test Platform
 - KDE neon with ubuntu 20.04
